@@ -1,0 +1,185 @@
+<section class="content">
+    <div class="row">
+        <div class="col-xs-6">
+            <table class="table table-hover">
+          
+
+                <div class="stuffs_">
+                    <p>#</p>
+                </div>
+
+                
+                <tbody  *ngFor="let stuff of stuffs;let i=index;">
+                        <tr *ngIf="openformid==i" class="Stuffs" >
+                        
+                                <td>
+                                    <input id="TaskRef"  [(ngModel)]="stuff.id" placeholder="">
+                                </td>
+                                
+                                <td>
+                                    <input id="TaskName" [(ngModel)]="stuff.taskname"  placeholder="">
+                                </td>
+        
+                                <td>
+                                    <input id="TaskDetail" [(ngModel)]="stuff.description"  placeholder="">
+                                </td>
+        
+                                <td>
+                                        <select  [(ngModel)]="stuff.duration" id="duration" class="custom-select" placeholder="In Hours">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                             </select>
+                             
+                                      
+                                </td>
+                            
+                                <td>
+                                        <input type="date" [(ngModel)]="endDate"/>   
+                   
+                                </td>
+
+                                <td>
+
+                                        <input type="text" [(ngModel)]="stuff.status"/>   
+                                      
+                                </td>
+                            
+                                <td>
+                                        <a (click)="onUpdate()"><i class="fa fa-save"></i></a>
+                             
+                                </td>
+                
+
+                            </tr>
+                      
+                    <tr class="Stuffs" >
+                        <td>
+                            <p class="Limit_P">
+                                    {{stuff.id}}
+                            </p>
+                          
+                        </td>
+                        <td>{{stuff.taskname}}</td>
+                        <td>{{stuff.description}}</td>
+                        <td>{{stuff.duration}}</td>
+                        <td>{{stuff.comments}}</td>
+                        <td>{{stuff.status}}</td>
+                        <td>
+                                <a (click)="onEdit(i)"><i class="fa fa-edit"></i></a>
+                            <a (click)="onDelete(stuff)"><i class="fa fa-trash"></i></a>
+                        </td>
+                   
+                    
+                       
+                    </tr>
+                    <tr *ngFor="let subitem of stuff.subtasks" class="NewStuffs">
+                            <p class="Limit_P">
+                                    {{subitem.id}}
+                            </p>
+
+                            <td>{{subitem.taskname}}</td>
+                            <td>{{subitem.description}}</td>
+                            <td>{{subitem.duration}}</td>
+                            <td>
+
+                                <table *ngFor="let comments of subitem.comments">
+                                    <tr >
+                                        <td>{{comments.content}}</td>
+                                    </tr>
+                       
+                                    
+                                  </table>
+                        
+                            </td>
+                            <td>{{subitem.status}}</td>
+                            <td>
+                                    <a (click)="onAddSubTask(stuff)"><i class="fa fa-plus"></i></a>
+                            </td>
+                    
+                    </tr>
+                   
+
+                    <div *ngIf="NewSubTask">
+                            <tr  *ngFor="let newSubTasksCount of newSubTasksCounts" >
+                                    <td>
+                                        <input  [(ngModel)]="SubTaskRef" placeholder="">
+                                    </td>
+                                    
+                                    <td>
+                                        <input [(ngModel)]="SubTaskName" placeholder="">
+                                    </td>
+            
+                                    <td>
+                                        <input [(ngModel)]="SubTaskDetail" placeholder="">
+                                    </td>
+            
+                                    <td>
+                                            <select [(ngModel)]="SubDurationTask" class="custom-select" placeholder="In Hours">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                 </select>
+                                 
+                                          
+                                    </td>
+                                    <td>
+                                            <input [(ngModel)]="SubCommentTask" placeholder="">
+                                    </td>
+                                    <td>
+                                           
+                                    </td>
+            
+                                    <td>
+                                        <button (click)="UpdateTaskStatus()" style="color: green;" *ngIf="toggleFlag">Active</button>
+                                        <button (click)="UpdateTaskStatus()" style="color: red;" *ngIf="!toggleFlag">To do</button>
+                                    </td>
+                                 
+                                    <td>
+                                        <a (click)="onAddSubtask()"><i class="fa fa-plus"></i></a>
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                </tr>
+                    </div>
+
+
+                    <!-- <div class="Bottom_" *ngFor="let subitem of stuff.subtasks">
+
+                            <tr *ngFor="let comments of subitem.comments" class="Sub__">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                    <td>{{comments.content}}</td>
+                           
+                                    <td>
+                                            <a (click)="checkReplies(stuff)"><i class="fa fa-plus"></i></a>
+                                    </td>
+                            
+                                </tr>
+                    </div> -->
+
+                
+                    
+        
+                
+                </tbody>
+            </table>
+
+        
+
+
+
+            
+        </div>
+    </div>
+</section>

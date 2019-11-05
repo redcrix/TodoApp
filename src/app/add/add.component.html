@@ -1,0 +1,129 @@
+<div class="panel-body">
+    <div class="panel-heading">
+        <h3>Task Management</h3>
+    </div>
+
+ 
+
+  
+            <div class="row">
+                <div class="col-xs-6">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let header of tableHeaders" >
+                                    {{header}}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="Stuffs" >
+                                <td>
+                                    <input [(ngModel)]="TaskRef" placeholder="">
+                                </td>
+                                
+                                <td>
+                                    <input [(ngModel)]="TaskName" placeholder="">
+                                </td>
+        
+                                <td>
+                                    <input [(ngModel)]="TaskDetail" placeholder="">
+                                </td>
+        
+                                <td>
+                                        <select [(ngModel)]="DurationTask" class="custom-select" placeholder="In Hours">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                             </select>
+                             
+                                      
+                                </td>
+                            
+                                <td>
+                                        <input type="date" [(ngModel)]="endDate"/>   
+                   
+                                </td>
+
+                                <td>
+
+                                        <input type="text" [(ngModel)]="Task_Status"/>   
+                                      
+                                </td>
+                            
+                                <td>
+                                        <a (click)="onAdd()"><i class="fa fa-save"></i></a>
+                                        <a (click)="onAdd_New()"><i class="fa fa-plus"></i></a>
+                             
+                                </td>
+                            </tr>
+
+                            <tr *ngFor="let s of NewStuffs;let i = index;" class="NewStuffs">
+
+                                    <td>
+                                            <input name="S_TaskRef_{{i}}" [(ngModel)]="s.S_TaskRef" placeholder="">
+                                        </td>
+                                        
+                                        <td>
+                                            <input name="S_TaskName_{{i}}" [(ngModel)]="s.S_TaskName" placeholder="">
+                                        </td>
+                
+                                        <td>
+                                            <input name="S_TaskDetail_{{i}}"  [(ngModel)]="s.S_TaskDetail" placeholder="">
+                                        </td>
+                
+                                        <td>
+                                                <select name="S_DurationTask_{{i}}"  [(ngModel)]="s.S_DurationTask" class="custom-select" placeholder="In Hours">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                     </select>
+                                     
+                                              
+                                        </td>
+
+                                        <td>
+                                                <input type="date" [(ngModel)]="s.S_endDate"/>   
+                                        </td>
+
+                                    
+                                     
+                
+                                        <td>
+
+                                                <input type="text" [(ngModel)]="s.S_Task_Status"/>   
+                                              
+                                        </td>
+
+                                        <td>
+                                                <a (click)="onAdd_New()"><i class="fa fa-plus"></i></a>
+                                                <a (click)="onLesserAmountOfNewRows(i)"><i class="fa fa-minus"></i></a>
+                           
+                                     
+                                        </td>
+                                       
+                                     
+
+                                  
+        
+        
+                            </tr>
+                           
+                        </tbody>
+
+                        </table>
+                        </div>
+                        </div>
+
+
+
+                        <div class="box-header with-border">
+                                <app-list #child></app-list>
+                            </div>
+</div>
