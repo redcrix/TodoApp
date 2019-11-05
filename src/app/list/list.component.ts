@@ -29,6 +29,13 @@ export class ListComponent implements OnInit {
   TaskDetail : String;
   DurationTask :any;
   CommentTask :any;
+
+  SubTaskRef :any;
+  SubTaskName : String;
+  SubTaskDetail : String;
+  SubDurationTask :any;
+  SubCommentTask :any;
+
   openformid: any;
   public id: number;
   public name: string;
