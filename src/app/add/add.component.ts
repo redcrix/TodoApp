@@ -60,21 +60,7 @@ export class AddComponent implements OnInit {
       {
         id:this.NewStuffs[0].S_TaskRef,
         taskname: this.NewStuffs[0].S_TaskName,
-        description: this.NewStuffs[0].S_TaskDetail,
-         "start": "2019-10-08T16:00:00Z",
-      "end": "2019-15-08T16:00:00Z",
-     "status":"false",
-          "duration" : "2",
-     "comments": [
-           {
-        "content": "asdfdf",
-        "replies": [
-          {
-            "content": "No, this is a good todo"
-          }
-                   ]
-           }
-           ]
+        description: this.NewStuffs[0].S_TaskDetail
         }
     ]
 
