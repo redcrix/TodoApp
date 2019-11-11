@@ -55,16 +55,77 @@ export class AddComponent implements OnInit {
     this.TaskName;
     this.TaskDetail;
 
-    let taskdata = {
-      ref : this.TaskRef,
-      name : this.TaskName,
-      detail : this.TaskDetail,
+  
+    let subtasks= [
+      {
+        id:this.NewStuffs[0].S_TaskRef,
+        taskname: this.NewStuffs[0].S_TaskName,
+        description: this.NewStuffs[0].S_TaskDetail,
+         "start": "2019-10-08T16:00:00Z",
+      "end": "2019-15-08T16:00:00Z",
+     "status":"false",
+          "duration" : "2",
+     "comments": [
+           {
+        "content": "asdfdf",
+        "replies": [
+          {
+            "content": "No, this is a good todo"
+          }
+                   ]
+           }
+           ]
+        }
+    ]
+
+    let taskdata = [{
+      id : this.TaskRef,
+      taskname : this.TaskName,
+      description : this.TaskDetail,
       status : this.Task_Status,
       duration : this.DurationTask,
-      endDate:this.endDate
-    }
-    console.log(this.NewStuffs);
-    this.graphqlService.Add_New_Task(taskdata,this.NewStuffs[0]).subscribe(result => {
+      end:this.endDate,
+      'subtasks':subtasks
+        }]
+
+
+       
+
+/*
+    "tasks": [
+      {
+        "id": Data_.ref,
+        "taskname": Data_.name,
+        "description": Data_.detail,
+        "start": "2019-10-08T16:00:00Z",
+        "end": "2019-15-08T16:00:00Z",
+        "status":Data_.status,
+        "duration" : Data_.duration,
+      
+        "subtasks": [
+          {
+             "id":subTaskdata.S_TaskRef,
+            "taskname": subTaskdata.S_TaskName,
+            "description": subTaskdata.S_TaskDetail,
+             "start": "2019-10-08T16:00:00Z",
+          "end": "2019-15-08T16:00:00Z",
+         "status":"false",
+              "duration" : "2",
+         "comments": [
+               {
+            "content": "asdfdf",
+            "replies": [
+              {
+                "content": "No, this is a good todo"
+              }
+                       ]
+               }
+               ]
+            }
+        ]
+        */
+
+    this.graphqlService.Add_New_Task(taskdata).subscribe(result => {
       console.log('CHECK'+JSON.stringify(result));
      window.location.reload();
     });

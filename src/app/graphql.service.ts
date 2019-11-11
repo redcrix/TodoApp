@@ -167,9 +167,7 @@ export class GraphqlService {
 
   
 
-  public Add_New_Task = (Data_,subTaskdata) =>{
-    console.log(subTaskdata.S_TaskRef);
-    
+  public Add_New_Task = (Data_) =>{
     return this.apollo.mutate({
       mutation: gql`mutation CreateTask($tasks: [TaskInput!]!) {
         createTask(values: $tasks) {
@@ -219,39 +217,7 @@ export class GraphqlService {
         instance
       }`,
       variables:{
-        "tasks": [
-          {
-            "id": Data_.ref,
-            "taskname": Data_.name,
-            "description": Data_.detail,
-            "start": "2019-10-08T16:00:00Z",
-            "end": "2019-15-08T16:00:00Z",
-            "status":Data_.status,
-            "duration" : Data_.duration,
-          
-            "subtasks": [
-              {
-                 "id":subTaskdata.S_TaskRef,
-                "taskname": subTaskdata.S_TaskName,
-                "description": subTaskdata.S_TaskDetail,
-                 "start": "2019-10-08T16:00:00Z",
-              "end": "2019-15-08T16:00:00Z",
-             "status":"false",
-                  "duration" : "2",
-             "comments": [
-                   {
-                "content": "asdfdf",
-                "replies": [
-                  {
-                    "content": "No, this is a good todo"
-                  }
-                           ]
-                   }
-                   ]
-                }
-            ]
-          }
-        ]
+        "tasks": Data_
       },
     }) 
 
