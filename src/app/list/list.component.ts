@@ -74,7 +74,7 @@ export class ListComponent implements OnInit {
       comments:this.CommentTask
 
     }
-    this.graphqlService.Add_New_Task(data, []).subscribe(result => {
+    this.graphqlService.Add_New_Task(data).subscribe(result => {
       console.log('CHECK'+JSON.stringify(result));
       // this.reloadData();
       // this.ngOnInit();
@@ -94,7 +94,7 @@ console.log(this.stuffs.id);
 
     }
     console.log(data);
-    this.graphqlService.Add_New_Task(data, []).subscribe(result => {
+    this.graphqlService.Add_New_Task(data).subscribe(result => {
       console.log('CHECK'+JSON.stringify(result));
       // this.reloadData();
       // this.ngOnInit();

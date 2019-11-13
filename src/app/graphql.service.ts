@@ -21,17 +21,10 @@ export class GraphqlService {
   public updatedOwner: Item;
  
   constructor(private apollo: Apollo, httpLink: HttpLink) {
-    // apollo.create({
-    //   link: httpLink.create({ uri: 'https://api.hypi.app/graphql' }),
-    //   cache: new InMemoryCache()
-    // })
     const http = httpLink.create({uri: config.uri});
 
     const authLink = new ApolloLink((operation, forward) => {
-      // Get the authentication token from local storage if it exists
-    //   const token = localStorage.getItem('token');
    let token=config.token;
-    // Use the setContext method to set the HTTP headers.
       operation.setContext({
           headers: {
               'Authorization': token ? `Bearer ${token}` : '',
@@ -39,8 +32,6 @@ export class GraphqlService {
               'Content-Type': 'application/json'
           }
       });
-
-      // Call the next link in the middleware chain.
       return forward(operation);
     });
 
@@ -48,70 +39,8 @@ export class GraphqlService {
       link: authLink.concat(http),
       cache: new InMemoryCache()
     });
-
-
-    
-  }
-
-  public addListItem = (formdata) =>{
-    return this.apollo.mutate({
-      mutation: gql`mutation CreateItem($items: [ItemInput!]!) {
-        createItem(values: $items) {
-          slug
-          title
-          description
-          start
-          end
-          due
-          comments {
-            content
-            hypi{...hypi}
-            replies {
-              content
-              hypi{...hypi}
-            }
-          }
-          hypi {
-            ...hypi
-          }
-        }
-      }
-       
-      fragment hypi on Hypi {
-        id
-        pagingToken
-        created
-        updated
-        createdBy
-        instance
-      }`,
-      variables:{
-        "items": [
-          {
-
-            "slug": "dfsdfsd",
-            "title": formdata.name,
-            "description": "df",
-            "start": "2019-10-08T16:00:00Z",
-            "end": "2019-15-08T16:00:00Z",
-            "comments": [
-              {
-                "content": "dffd",
-                "replies": [
-                  {
-                    "content": "No, this is a good todo"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-    }) 
-
-  }
-
   
+  }
 
   public get_AllTasks = () => {
     return this.apollo.watchQuery({
@@ -141,15 +70,12 @@ export class GraphqlService {
                        hypi{...hypi}
                    }
                }
-                
-               }
-               
+               }            
                hypi {
                        ...hypi
                }
        }
        }
-        
        fragment hypi on Hypi {
          id
          pagingToken
@@ -164,7 +90,7 @@ export class GraphqlService {
     }) .valueChanges
   }
 
-  
+
 
   public Add_New_Task = (Data_) =>{
     return this.apollo.mutate({
@@ -196,17 +122,12 @@ export class GraphqlService {
                       content
                       hypi{...hypi}
                   }
+              }             
               }
-               
-              }
-              
               hypi {
                       ...hypi
               }
-      }
-      
-      }
-       
+      }  }
       fragment hypi on Hypi {
         id
         pagingToken
@@ -223,9 +144,7 @@ export class GraphqlService {
   }
 
 
-  public delete_Task = (ID_) =>{
-
-    
+  public delete_Task = (ID_) =>{   
     return this.apollo.mutate({
       mutation: gql`mutation DeleteTask($tasks :String)   {
         deleteTask( arcql:$tasks )  {
@@ -254,17 +173,11 @@ export class GraphqlService {
                   replies {
                       content
                       hypi{...hypi}
-                  }
-              }
-               
-              }
-              
+                  }}}      
               hypi {
                       ...hypi
               }
-      }
-      
-      }
+      }   }
        
       fragment hypi on Hypi {
         id
@@ -277,8 +190,7 @@ export class GraphqlService {
       variables:{
         "tasks": "hypi.id = '"+ID_.hypi.id+"'"
        },
-    }) 
-
+    })
   }
 
 }
